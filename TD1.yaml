@@ -1,0 +1,376 @@
+openapi: 3.0.1
+info:
+  title: STD21086
+  description: HELLO WORLD
+  version: 1.0.0
+servers:
+- url: https://std21086.com
+tags:
+- name: Students
+
+- name: Courses
+paths:
+  /students:
+    get:
+      tags:
+      - Students
+      summary: Get all students
+      description: GET all students with details
+      operationId: GETstudents
+      parameters:
+      - name: page
+        in: query
+        style: form
+        explode: true
+        schema:
+          type: integer
+      - name: page-size
+        in: query
+        required: true
+        style: form
+        explode: true
+        schema:
+          type: integer
+          
+      responses:
+        200:
+          description: list of students
+          content:
+            
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Creatstudents'
+        400:
+          description: Bad request
+          content: {}
+        
+      
+  
+    post:
+      tags:
+      - Students
+      summary: create new students
+      description: Create new students from array
+      operationId: addPet
+      requestBody:
+        description: Students to be created 
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Students'
+          
+        required: true
+      responses:
+        200:
+          description: list of students
+          content:
+            
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Students'
+        400:
+          description: Bad request
+          content: {}
+      
+      x-codegen-request-body-name: body
+      
+      
+      
+    put:
+      tags:
+      - Students
+      summary: Change an existing students
+      operationId: Change students
+      requestBody:
+        description: students to be changed 
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Creatstudents'
+          
+      responses:
+        200:
+          description: list of students
+          content:
+            
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Students'
+        400:
+          description: Bad request
+          content: {}
+      x-codegen-request-body-name: body
+      
+    patch:
+      tags:
+      - Students
+      summary: Update an existing students
+      requestBody:
+        description: students to be update
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Creatstudents'
+      responses:
+        200:
+          description: list of courses
+          content:
+            
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Students'
+        400:
+          description: Bad request
+          content: {}  
+      
+  /students/{id}:
+    get:
+      tags:
+      - Students
+      summary: Get  students by id
+      description: GET  students with details
+      operationId: getStudents by ID
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          
+      responses:
+        200:
+          description: list of students
+          content:
+            
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Creatstudents'
+        400:
+          description: Bad request
+          content: {}
+      
+    delete :
+      tags:
+      - Students
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+          200:
+            description: Student is delete
+            
+  /courses:
+    get:
+      tags:
+      - Courses
+      summary: Get all courses
+      description: GET all courses with details
+      operationId: GETcourses
+      parameters:
+      - name: page
+        in: query
+        style: form
+        explode: true
+        schema:
+          type: integer
+      - name: page-size
+        in: query
+        required: true
+        style: form
+        explode: true
+        schema:
+          type: integer
+          
+      responses:
+        200:
+          description: list of courses
+          content:
+            
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Creatcourses'
+        400:
+          description: Bad request
+          content: {}
+        
+    post:
+      tags:
+      - Courses
+      summary: create new courses
+      description: Create new courses from array
+      operationId: addCourses
+      requestBody:
+        description: Courses to be created 
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Creatcourses'
+          
+        required: true
+      responses:
+        200:
+          description: list of courses
+          content:
+            
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Courses'
+        400:
+          description: Bad request
+          content: {}
+      
+      x-codegen-request-body-name: body
+      
+    put:
+      tags:
+      - Courses
+      summary: Change an existing courses
+      operationId: Change Courses
+      requestBody:
+        description: Courses to be changed 
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Creatcourses'
+          
+      responses:
+        200:
+          description: list of courses
+          content:
+            
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Courses'
+        400:
+          description: Bad request
+          content: {}
+      x-codegen-request-body-name: body
+      
+    patch:
+      tags:
+      - Courses
+      summary: Update an existing courses
+      requestBody:
+        description: Courses to be update
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Creatcourses'
+      responses:
+        200:
+          description: list of courses
+          content:
+            
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Courses'
+        400:
+          description: Bad request
+          content: {}
+          
+  /courses/{id}:
+    get:
+        tags:
+        - Courses
+        summary: Get courses by id
+        operationId: getCoursesByID
+        description: Get all courses with details
+        parameters:
+          - name: id
+            in: path
+            required: true
+            schema:
+              type: integer
+          
+        responses:
+          400:
+            description: Bad request
+          200:
+            description: List of students
+            content:
+              application/json:
+                schema:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/Courses'
+                    
+    delete:
+        tags:
+        - Courses
+        parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+        responses:
+          200:
+            description: Courses is delete
+   
+                
+components:
+  schemas:
+    Creatcourses:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+          
+    Courses:
+      type: object
+      properties:
+        name:
+          type: string
+        teachers:
+          type: string
+        code :
+          type: string
+          example : prog1
+        date:
+          type: string
+          example: 2022-07-15  
+      xml:
+        name: Category
+        
+    Creatstudents:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        
+    Students:
+      type: object
+      properties:
+        
+        name:
+          type: string
+      xml:
+        name: Category
+   
